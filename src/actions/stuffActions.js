@@ -19,8 +19,8 @@ export function fetchStuff() {
                 }else{
                     var flash = {
                         type: 'error',
-                        title: 'Error getting task list',
-                        content: 'There was an error getting the task list. Please try again.'
+                        title: 'Error getting football-players list',
+                        content: 'There was an error getting the football-players list. Please try again.'
                     }
                     dispatch({type: "DISPLAY_FLASH", data: flash})
                 }
