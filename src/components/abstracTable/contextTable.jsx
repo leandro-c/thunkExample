@@ -73,9 +73,9 @@ export const Body = (props) => (
 
 export const Header = () => (
     <TableContext.Consumer>
-        {({ columns }) => (
+        {({ columns}) => (
         <TableHead>
-            <TableRow>{columns.map((field, i) => <TableCell key={i}>{field.displayName}</TableCell>)}</TableRow>
+            <TableRow >{columns.map((field, i) => <TableCell key={i}>{field.displayName}</TableCell>)}</TableRow>
         </TableHead>
         )}
     </TableContext.Consumer>

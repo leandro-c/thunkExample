@@ -2,19 +2,23 @@ import { createSelector } from 'reselect'
 
 export const getPlayersSorted = createSelector(
     [
-        (state, _) => {return state.stuff},
-        (state, _ ) => { return state.stuff.sortMethod }
+        (state, _) => { return state.stuff },
+        (state, _) => { return state.stuff.sortMethod }
     ],
-    (players, sortMethod) =>{
-        switch (sortMethod){
+    (players, sortMethod) => {
+        switch (sortMethod) {
             case 'age':
-                return players.sort((a, b)=>{
-                    return a.age - b.age;
+                return players.sort((a, b) => {
+                    return a.dateOfBirth - b.dateOfBirth;
                 })
-            case 'name':{
-                return players.sort((a, b)=>{
+            case 'position':
+                return players.filter((a, position) => {
+                    return a.position === position;
+                })
+            case 'name': {
+                return players.sort((a, b) => {
                     return a.name.localCompare(b.name);
-            })
+                })
             }
             default:
                 return players;
