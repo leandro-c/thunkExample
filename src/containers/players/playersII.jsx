@@ -4,43 +4,67 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import * as stuffActions from './../../actions/stuffActions';
 import EdiThable from "./../../components/abstracTable/ediThable";
-import {getPlayersSorted} from '../../selectors/players'
+import SelectFilter from "./../../components/SelectFilter";
+import InputFilter from './../../components/InputFilter'
+import { getPlayersSorted } from '../../selectors/players'
 
-
+const position = [
+    { value: 'Attacking Midfield', label: 'Attacking Midfield' },
+    { value: 'Central Midfield', label: 'Central Midfield' },
+    { value: 'Centre-Back', label: 'Centre-Back' },
+    { value: 'Centre-Forward', label: 'Centre-Forward' },
+    { value: 'Centre-Forward', label: 'Centre-Forward' },
+    { value: 'Defensive Midfield', label: 'Defensive Midfield' },
+    { value: 'Keeper', label: 'Keeper' },
+    { value: 'Left Midfield', label: 'Left Midfield' },
+    { value: 'Left Wing', label: 'Left Wing' },
+    { value: 'Left-Back', label: 'Left-Back' },
+    { value: 'Right-Back', label: 'Right-Back' }
+]
 
 class Players extends Component {
     constructor(props) {
         super(props);
-        this.activeRow = 1;
         this.columns = [
-        {
-            displayName: "Player",
-            name: "name",
-            type:"name",
-            editable: false
-        },
-        {
-            displayName: "Position",
-            name: "position",
-            type:"position",
-            editable: false
-        },
-        {
-            displayName: "Age",
-            name: "dateOfBirth",
-            type:"date",
-            editable: false
-        }
+            {
+                displayName: "Player",
+                name: "name",
+                type: "name",
+                editable: false
+            },
+            {
+                displayName: "Position",
+                name: "position",
+                type: "position",
+                editable: false
+            },
+            {
+                displayName: "Age",
+                name: "dateOfBirth",
+                type: "date",
+                editable: false
+            }
         ];
     }
-    
+    state = { filterPosition: null, filterName:null}
+
     componentWillMount() {
         this.props.stuffActions.fetchStuff();
     }
+    
+    handleNameFilter =(e)=>{
+        console.log('handleNameFilter',e)
+        this.setState({ filterName: e.target.value })
+    }
+    
+    handlePositionSelect =(e)=>{
+        console.log('handlePositionSelect',e)
+        this.setState({ filterPosition: e.target.value })
+    }
 
     render() {
-        console.log('props container',this.props.players)
-        console.log('state',this.state,'props',this.props)
+        const { filterPosition, filterName } = this.state
+        console.log('state', this.state, 'props', this.props)
         if (!this.props.players) {
             return (
                 <div>
@@ -50,6 +74,25 @@ class Players extends Component {
         } else {
             return (
                 <div >
+                    <React.Fragment>
+                        <SelectFilter
+                            id="positions"
+                            label="Positions"
+                            values={position}
+                            onChange={e => this.handlePositionSelect(e)}
+                            onBlur={e => this.handlePositionSelect(e)}
+                            value={filterPosition}
+                        />
+                    </React.Fragment>
+                    <React.Fragment>
+                        <InputFilter
+                            nameValue={filterName}
+                            labelValue={'Name Player'}
+                            placeholderValue={'filter by name...'}
+                            onChange={e => this.handleNameFilter(e)}
+                            onBlur={e => this.handleNameFilter(e)}
+                        />
+                    </React.Fragment>
                     <EdiThable
                         columns={this.columns}
                         data={this.props.players}
@@ -75,7 +118,7 @@ Players.propTypes = {
     return mapStateToProps
 }; */
 
-export const mapStateToProps = (state) => ({    
+export const mapStateToProps = (state) => ({
     players: getPlayersSorted(state)
 });
 
