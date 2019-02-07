@@ -3,7 +3,7 @@ import { createSelector } from 'reselect'
 export const getPlayersSorted = createSelector(
     [
         (state, _) => {return state.stuff},
-        (_, ownProps) => {return ownProps.sortMethod}
+        (state, _ ) => { return state.stuff.sortMethod }
     ],
     (players, sortMethod) =>{
         switch (sortMethod){
