@@ -28,15 +28,14 @@ const InputFilter = ({
     inputProps
 }) => (
         <div
-            className={classNames("padding10", "mTopMobile", { card: !noCard })}
-            style={{ width: "100%" }}
+            
+            style={{ padding: "10px" }}
         >
             <TextField
                 id={idValue}
                 autoComplete="off"
                 className={classes.textField}
                 label={labelValue}
-                fullWidth
                 name={nameValue}
                 onChange={onChange}
                 onBlur={onBlur}

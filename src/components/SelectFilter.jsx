@@ -8,29 +8,30 @@ import { withStyles } from '@material-ui/core/styles'
 
 const SelectFilter = ({ classes, error, label, values, idValue, placeHolder, id, ...props }) => (
     <div className="card-form padding10">
-        <form autoComplete="off">
-
-            <InputLabel />
-            <Select
-                {...props}
-                inputProps={{
-                    name: id,
-                    id
-                }}
-                displayEmpty={Boolean(label)}
-            >
-                {label && (
-                    <MenuItem value={null} style={{ color: 'rgba(0,0,0,0.54)' }}>
-                        {label}
-                    </MenuItem>
-                )}
-                {values.map(item => (
-                    <MenuItem value={item.value}>{item.label}</MenuItem>
-                ))}
-            </Select>
 
 
-        </form>
+        <InputLabel />
+        <Select
+            style={{height: 58}}
+            {...props}
+            inputProps={{
+                name: id,
+                id
+            }}
+            displayEmpty={Boolean(label)}
+        >
+            {label && (
+                <MenuItem value={null} style={{ color: 'rgba(0,0,0,0.54)' }}>
+                    {label}
+                </MenuItem>
+            )}
+            {values.map(item => (
+                <MenuItem value={item.value}>{item.label}</MenuItem>
+            ))}
+        </Select>
+
+
+
     </div>
 )
 

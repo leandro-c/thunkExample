@@ -46,19 +46,19 @@ class Players extends Component {
             }
         ];
     }
-    state = { filterPosition: null, filterName:null}
+    state = { filterPosition: null, filterName: null }
 
     componentWillMount() {
         this.props.stuffActions.fetchStuff();
     }
-    
-    handleNameFilter =(e)=>{
-        console.log('handleNameFilter',e)
+
+    handleNameFilter = (e) => {
+        console.log('handleNameFilter', e)
         this.setState({ filterName: e.target.value })
     }
-    
-    handlePositionSelect =(e)=>{
-        console.log('handlePositionSelect',e)
+
+    handlePositionSelect = (e) => {
+        console.log('handlePositionSelect', e)
         this.setState({ filterPosition: e.target.value })
     }
 
@@ -73,8 +73,8 @@ class Players extends Component {
             )
         } else {
             return (
-                <div >
-                    <React.Fragment>
+                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', maxWidth: 1200, margin: '0 auto' }}>
+                    <div style={{ display: 'flex'}}>
                         <SelectFilter
                             id="positions"
                             label="Positions"
@@ -83,8 +83,7 @@ class Players extends Component {
                             onBlur={e => this.handlePositionSelect(e)}
                             value={filterPosition}
                         />
-                    </React.Fragment>
-                    <React.Fragment>
+
                         <InputFilter
                             nameValue={filterName}
                             labelValue={'Name Player'}
@@ -92,7 +91,7 @@ class Players extends Component {
                             onChange={e => this.handleNameFilter(e)}
                             onBlur={e => this.handleNameFilter(e)}
                         />
-                    </React.Fragment>
+                    </div>
                     <EdiThable
                         columns={this.columns}
                         data={this.props.players}
