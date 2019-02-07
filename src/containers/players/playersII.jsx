@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import * as stuffActions from './../../actions/stuffActions';
 import EdiThable from "./../../components/abstracTable/ediThable";
-import {makeGetPlayerByName,getSelectedSort} from '../../selectors/players'
-//import default from "material-ui/Card/CardContent";
+import {getPlayersSorted} from '../../selectors/players'
+
 
 
 class Players extends Component {
@@ -65,12 +65,6 @@ Players.propTypes = {
     stuff: PropTypes.array
 };
 
-/* function mapStateToProps(state) {
-    return {
-        players: state.stuff
-    };
-} */
-
 /* const makeMapStateToProps = () => {
     const getPlayerByName = makeGetPlayerByName();
     const mapStateToProps = (state, props) => {
@@ -82,7 +76,7 @@ Players.propTypes = {
 }; */
 
 export const mapStateToProps = (state) => ({    
-    players: getSelectedSort(state)
+    players: getPlayersSorted(state)
 });
 
 function mapDispatchToProps(dispatch) {
