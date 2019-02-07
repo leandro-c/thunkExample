@@ -1,3 +1,9 @@
 export default {
-  stuff: []
+  stuff: {
+    players: [],
+    nameFilter:'',
+  positionFilter:'',
+  ageFilter:''
+  },
+  
 };

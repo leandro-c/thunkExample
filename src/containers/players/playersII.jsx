@@ -6,7 +6,7 @@ import * as stuffActions from './../../actions/stuffActions';
 import EdiThable from "./../../components/abstracTable/ediThable";
 import SelectFilter from "./../../components/SelectFilter";
 import InputFilter from './../../components/InputFilter'
-import { getPlayersSorted } from '../../selectors/players'
+import nameSelector from '../../selectors/players'
 
 const position = [
     { value: 'Attacking Midfield', label: 'Attacking Midfield' },
@@ -54,7 +54,7 @@ class Players extends Component {
 
     handleNameFilter = (e) => {
         console.log('handleNameFilter', e)
-        this.setState({ filterName: e.target.value })
+        this.props.stuffActions.setNameFilter(e.target.value);
     }
 
     handlePositionSelect = (e) => {
@@ -64,6 +64,8 @@ class Players extends Component {
 
     render() {
         const { filterPosition, filterName } = this.state
+        const { nameFilter } = this.props
+
         console.log('state', this.state, 'props', this.props)
         if (!this.props.players) {
             return (
@@ -85,7 +87,7 @@ class Players extends Component {
                         />
 
                         <InputFilter
-                            nameValue={filterName}
+                            nameValue={nameFilter}
                             labelValue={'Name Player'}
                             placeholderValue={'filter by name...'}
                             onChange={e => this.handleNameFilter(e)}
@@ -107,18 +109,12 @@ Players.propTypes = {
     stuff: PropTypes.array
 };
 
-/* const makeMapStateToProps = () => {
-    const getPlayerByName = makeGetPlayerByName();
-    const mapStateToProps = (state, props) => {
-        return {
-            players: getPlayerByName(state, props)
-        }
-    };
-    return mapStateToProps
-}; */
+
 
 export const mapStateToProps = (state) => ({
-    players: getPlayersSorted(state)
+    players: nameSelector(state),
+    nameFilter: state.nameFilter,
+    
 });
 
 function mapDispatchToProps(dispatch) {

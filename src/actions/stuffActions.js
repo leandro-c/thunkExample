@@ -27,3 +27,7 @@ export function fetchStuff() {
             });
     };
 }
+
+export function setNameFilter(data) {
+    return {type: allActions.nameSelector, nameFilter: data};
+}
