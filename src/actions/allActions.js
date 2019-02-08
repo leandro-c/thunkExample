@@ -1,3 +1,5 @@
 export const FETCH_STUFF = 'FETCH_STUFF';
 export const RECEIVE_STUFF = 'RECEIVE_STUFF';
-export const nameSelector = 'nameSelector';
+export const NAME_SELECTOR = 'NAME_SELECTOR';
+export const AGE_SELECTOR = 'AGE_SELECTOR';
+export const POSITION_SELECTOR = 'POSITION_SELECTOR';

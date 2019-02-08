@@ -29,5 +29,13 @@ export function fetchStuff() {
 }
 
 export function setNameFilter(data) {
-    return {type: allActions.nameSelector, nameFilter: data};
+    return {type: allActions.NAME_SELECTOR, nameFilter: data};
+}
+
+export function setAgeFilter(data) {
+    return {type: allActions.AGE_SELECTOR, ageFilter: data};
+}
+
+export function setPositionFilter(data) {
+    return {type: allActions.POSITION_SELECTOR, positionFilter: data};
 }

@@ -14,9 +14,6 @@ const styles = () => ({
 });
 
 const InputFilter = ({
-    classes,
-    dataDecidir,
-    error,
     idValue,
     labelValue,
     nameValue,
@@ -24,7 +21,6 @@ const InputFilter = ({
     onBlur,
     valued,
     placeholderValue,
-    noCard,
     inputProps
 }) => (
         <div
@@ -34,7 +30,6 @@ const InputFilter = ({
             <TextField
                 id={idValue}
                 autoComplete="off"
-                className={classes.textField}
                 label={labelValue}
                 name={nameValue}
                 onChange={onChange}
@@ -52,15 +47,11 @@ InputFilter.defaultProps = {
     onChange: () => { },
     onBlur: () => { },
     placeholderValue: "placeHolder",
-    classes: null,
     valued: null,
-    noCard: false,
     inputProps: {}
 };
 
 InputFilter.propTypes = {
-    error: PropTypes.bool.isRequired,
-    noCard: PropTypes.bool,
     idValue: PropTypes.string,
     labelValue: PropTypes.string.isRequired,
     dataDecidir: PropTypes.string,
@@ -69,7 +60,6 @@ InputFilter.propTypes = {
     onBlur: PropTypes.func,
     valued: PropTypes.string,
     placeholderValue: PropTypes.string,
-    classes: PropTypes.string,
     inputProps: PropTypes.object
 };
 

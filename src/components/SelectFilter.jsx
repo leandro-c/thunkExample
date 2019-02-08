@@ -25,8 +25,8 @@ const SelectFilter = ({ classes, error, label, values, idValue, placeHolder, id,
                     {label}
                 </MenuItem>
             )}
-            {values.map(item => (
-                <MenuItem value={item.value}>{item.label}</MenuItem>
+            {values.map((item ,i) => (
+                <MenuItem key={i} value={item.value}>{item.label}</MenuItem>
             ))}
         </Select>
 
@@ -49,10 +49,9 @@ SelectFilter.propTypes = {
     values: PropTypes.arrayOf(
         PropTypes.shape({
             title: PropTypes.string,
-            value: PropTypes.any.isRequired
+            value: PropTypes.any
         })
-    ),
-    error: PropTypes.bool.isRequired
+    )
 }
 
 export default withStyles(() => ({

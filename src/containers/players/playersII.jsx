@@ -8,7 +8,7 @@ import SelectFilter from "./../../components/SelectFilter";
 import InputFilter from './../../components/InputFilter'
 import nameSelector from '../../selectors/players'
 
-const position = [
+const positions = [
     { value: 'Attacking Midfield', label: 'Attacking Midfield' },
     { value: 'Central Midfield', label: 'Central Midfield' },
     { value: 'Centre-Back', label: 'Centre-Back' },
@@ -53,20 +53,19 @@ class Players extends Component {
     }
 
     handleNameFilter = (e) => {
-        console.log('handleNameFilter', e)
+        this.setState({ filterName: e.target.value })
         this.props.stuffActions.setNameFilter(e.target.value);
     }
 
     handlePositionSelect = (e) => {
-        console.log('handlePositionSelect', e)
         this.setState({ filterPosition: e.target.value })
+        this.props.stuffActions.setPositionFilter(e.target.value);
     }
 
     render() {
         const { filterPosition, filterName } = this.state
-        const { nameFilter } = this.props
+        const { nameFilter, positionFilter } = this.props
 
-        console.log('state', this.state, 'props', this.props)
         if (!this.props.players) {
             return (
                 <div>
@@ -80,7 +79,7 @@ class Players extends Component {
                         <SelectFilter
                             id="positions"
                             label="Positions"
-                            values={position}
+                            values={positions}
                             onChange={e => this.handlePositionSelect(e)}
                             onBlur={e => this.handlePositionSelect(e)}
                             value={filterPosition}
@@ -92,6 +91,7 @@ class Players extends Component {
                             placeholderValue={'filter by name...'}
                             onChange={e => this.handleNameFilter(e)}
                             onBlur={e => this.handleNameFilter(e)}
+                            value={positionFilter}
                         />
                     </div>
                     <EdiThable
@@ -113,8 +113,8 @@ Players.propTypes = {
 
 export const mapStateToProps = (state) => ({
     players: nameSelector(state),
-    nameFilter: state.nameFilter,
-    
+    nameFilter: state.nameFilter,//checkear esto 
+    positionFilter: state.positionFilter,//checkear esto 
 });
 
 function mapDispatchToProps(dispatch) {
